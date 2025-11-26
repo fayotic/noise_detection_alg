@@ -1,11 +1,11 @@
-// Reads Lena.jpg and Lena_noise.jpg.
-// Computes MSE1, SNR1, PSNR1.
-// Saves these values (returns them or writes to results_summary.txt).
-// Must use double, loops or mean, no toolbox functions.
+% Reads Lena.jpg and Lena_noise.jpg.
+% Computes MSE1, SNR1, PSNR1.
+% Saves these values (returns them or writes to results_summary.txt).
+% Must use double, loops or mean, no toolbox functions.
 
-function [MSE1, SNR1, PSNR1] = part1_metrics()
+function Metrics = part1_metrics()
 
-    // Read images (already grayscale)
+    % Read images (already grayscale)
     A = imread('Lena.jpg');           % original
     B = imread('Lena_noise.jpg');     % noisy
 
