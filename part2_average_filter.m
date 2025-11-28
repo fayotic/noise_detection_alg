@@ -1,24 +1,34 @@
-% Implements a manual 3×3 average filter (replicate borders recommended).
-% Writes Lena_average.jpg.
-% Computes MSE2, SNR2, PSNR2 (can call helper in part1_metrics.m or return values).
-
 function Iavg = Average_Filter()
+% Implements a manual 3x3 average filter on Lena_noise.jpg
+% Handles all pixels including edges/corners by averaging only existing neighbors
+% Writes Lena_average.jpg
 
-A = imread('Lena_noise.jpg');
+A = imread('Lena_noise.jpg');    % read noisy image
 A = double(A);
 [m,n] = size(A);
 
-I = zeros(m,n);
+I = zeros(m,n);                  % output image
 
-for i = 2:m-1
-    for j = 2:n-1
-        s = 0;
+for i = 1:m
+    for j = 1:n
+        s = 0;     % sum of neighborhood
+        count = 0; % number of pixels included
+
+        % Loop over 3x3 neighborhood
         for u = -1:1
             for v = -1:1
-                s = s + A(i+u, j+v);
+                ni = i + u;
+                nj = j + v;
+
+                % Include only valid pixels
+                if ni >= 1 && ni <= m && nj >= 1 && nj <= n
+                    s = s + A(ni,nj);
+                    count = count + 1;
+                end
             end
         end
-        I(i,j) = round(s / 9.0);
+
+        I(i,j) = round(s / count);   % average of available neighbors
     end
 end
 
@@ -35,4 +45,3 @@ fprintf("SNR2  = %.4f\n", SNR2);
 fprintf("PSNR2 = %.4f\n", PSNR2);
 
 end
-
