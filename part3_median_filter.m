@@ -1,8 +1,6 @@
-% Implements a manual 3×3 median filter (use sort to find median).
-% Writes Lena_median.jpg.
-% Computes MSE3, SNR3, PSNR3.
-
 function Imed = Median_Filter()
+% Implements a manual 3x3 median filter on Lena_noise.jpg
+% Handles all pixels including edges/corners by using only existing neighbors
 
 A = imread('Lena_noise.jpg');
 A = double(A);
@@ -10,27 +8,34 @@ A = double(A);
 
 I = zeros(m,n);
 
-for i = 2:m-1
-    for j = 2:n-1
+for i = 1:m
+    for j = 1:n
+        B = [];  % dynamic array to store neighbors
 
-        B = zeros(1,9);
-        k = 1;
+        % Loop over 3x3 neighborhood
         for u = -1:1
             for v = -1:1
-                B(k) = A(i+u, j+v);
-                k = k + 1;
+                ni = i + u;
+                nj = j + v;
+
+                % Include only valid pixels
+                if ni >= 1 && ni <= m && nj >= 1 && nj <= n
+                    B = [B, A(ni,nj)];
+                end
             end
         end
 
+        % Sort and pick the median
         B = sort(B);
-        I(i,j) = B(5);
-
+        mid = ceil(length(B)/2);
+        I(i,j) = B(mid);
     end
 end
 
 Imed = uint8(I);
 imwrite(Imed, 'Lena_median.jpg');
 
+% Compute metrics
 orig = imread('Lena.jpg');
 [MSE3, SNR3, PSNR3] = compute_metrics(double(orig), double(Imed));
 
