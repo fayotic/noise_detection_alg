@@ -15,8 +15,8 @@ coords = [];
 %For loop that saves all the coordinates that contain the salt/pepper
 %pixels
 
-for i=1: m
-    for j=1: n
+for i=1: m -1
+    for j=1: n -1
         if(L(i,j) == 255 || L(i,j) == 0)
             coords = [coords; i, j];
         end

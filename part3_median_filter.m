@@ -8,6 +8,7 @@ A = imread('Lena_noise.jpg');
 A = double(A);
 [m,n] = size(A);
 
+
 I = zeros(m,n);
 
 for i = 2:m-1
