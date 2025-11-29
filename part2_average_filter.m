@@ -1,6 +1,7 @@
 % Implements a manual 3x3 average filter on Lena_noise.jpg
 % Handles all pixels including edges/corners by averaging only existing neighbors
 % Writes Lena_average.jpg
+% Computes and displays MSE, SNR, and PSNR for the filtered image
 
 function Iavg = Average_Filter()
 
