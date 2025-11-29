@@ -1,7 +1,8 @@
-function Iavg = Average_Filter()
 % Implements a manual 3x3 average filter on Lena_noise.jpg
 % Handles all pixels including edges/corners by averaging only existing neighbors
 % Writes Lena_average.jpg
+
+function Iavg = Average_Filter()
 
 A = imread('Lena_noise.jpg');    % read noisy image
 A = double(A);

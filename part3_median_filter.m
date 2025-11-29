@@ -1,14 +1,15 @@
-function Imed = Median_Filter()
 % Implements a manual 3x3 median filter on Lena_noise.jpg
 % Handles all pixels including edges/corners by using only existing neighbors
 % Writes Lena_median.jpg
+% Computes and displays MSE, SNR, and PSNR for the filtered image
+
+function Imed = Median_Filter()
 
 A = imread('Lena_noise.jpg');       % read noisy image
 A = double(A);
 [m,n] = size(A);
 
-
-I = zeros(m,n);
+I = zeros(m,n);                     % output image
 
 for i = 1:m
     for j = 1:n
@@ -47,4 +48,3 @@ fprintf("SNR3  = %.4f\n", SNR3);
 fprintf("PSNR3 = %.4f\n", PSNR3);
 
 end
-

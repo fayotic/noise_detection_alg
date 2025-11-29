@@ -1,6 +1,7 @@
-function Metrics = part1_metrics()
 % Reads Lena.jpg and Lena_noise.jpg.
 % Computes MSE1, SNR1, PSNR1.
+
+function Metrics = part1_metrics()
 
 % Read images
 A = imread('Lena.jpg');           % original
