@@ -1,5 +1,6 @@
-function [MSE, SNR, PSNR] = compute_metrics(A, B)
 % Computes MSE, SNR, PSNR between two grayscale images A and B.
+
+function [MSE, SNR, PSNR] = compute_metrics(A, B)
 % A = original image (double)
 % B = processed image (double)
 

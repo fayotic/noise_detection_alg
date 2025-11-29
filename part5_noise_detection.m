@@ -4,36 +4,40 @@
 % Produces a visualization image highlighting noise pixels
 
 function noiseReduc = Noise_Detection()
-
 %Reads the image w/ noise
-L = imread('Lena_noise.jpg');
+A = imread('Lena_noise.jpg');
 %Size of image
-[m,n] = size(L);
-%Array where we will store the coordinates of the pixels identified as
-%noise
-coords = [];
+[m,n] = size(A);
+%Threshold that defines a significant value
+threshold = 15;
 
-%For loop that saves all the coordinates that contain the salt/pepper
-%pixels
+% ------ NOISE DETECTION ALG --------------------
+coords = [];  % list of noisy pixel coordinates
 
-for i=1: m 
-    for j=1: n 
-        if(L(i,j) == 255 || L(i,j) == 0)
-            coords = [coords; i, j];
+%Nested for-loop that detects pixels for noise.
+for i = 2:m -1
+    for j = 2:n - 1
+
+        %3 by 3 neighbors
+        p_neighbors = [A(i-1,j-1), A(i-1,j), A(i-1,j+1), ...
+                       A(i,j-1),             A(i,j+1), ...
+                       A(i+1,j-1), A(i+1,j), A(i+1,j+1)];
+        %Get the median of the neighbors for comparison
+        p_median = median(p_neighbors);
+
+        %If the pixel is significantly different than neighbors, add to
+        %coordinates
+        if abs(A(i,j) - p_median) > threshold
+            coords = [coords; i,j];
         end
     end
 end
 
-%Turns every value that is not black or white to a medium gray
-for i=1: m
-    for j=1: n
-        if(L(i,j) ~= 255 && L(i,j) ~= 0)
-            L(i,j) = 128;
-     
-        end
-    end
-end
+%----- NOISE VISUALIZATION --------
+
+
+
         
 %disp(coords); (used for testing)
 figure;
-imshow(L) %shows all the noise of the image.
+imshow(A) %shows all the noise of the image.
