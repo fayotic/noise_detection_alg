@@ -13,7 +13,7 @@ B = double(B);
 
 [m,n] = size(A);
 
-% Call the shared metric function
+% Compute Metrics
 [MSE1, SNR1, PSNR1] = compute_metrics(A, B);
 
 % Display results
