@@ -35,6 +35,7 @@ for i = 1:m
     end
 end
 
+% Save and compute metrics
 Imed = uint8(I);
 imwrite(Imed, 'Lena_median.jpg');
 

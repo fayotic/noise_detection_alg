@@ -20,32 +20,36 @@ for i = 1:m
     end
 end
 
-% Step 2: Apply median filter only on detected noise pixels
+% Apply median filter only on detected noise pixels
 I = A;   % initialize output image as original
 
 for k = 1:size(coords,1)
+    % Coordinates of noise pixel
     i = coords(k,1);
     j = coords(k,2);
 
-    % collect neighborhood pixels
     B = [];
+
+    % Loop over 3x3 neighborhood
     for u = -1:1
         for v = -1:1
             ni = i + u;
             nj = j + v;
+
+            % Include only valid pixels
             if ni >= 1 && ni <= m && nj >= 1 && nj <= n
                 B = [B, A(ni,nj)];
             end
         end
     end
 
-    % median of neighborhood
+    % Sort and pick the median
     B = sort(B);
     mid = ceil(length(B)/2);
     I(i,j) = B(mid);   % replace noisy pixel with median
 end
 
-% Step 3: Save and compute metrics
+% Save and compute metrics
 Imed_noise = uint8(I);
 imwrite(Imed_noise, 'Lena_medianfilter_detectednoise.jpg');
 

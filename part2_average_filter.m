@@ -34,6 +34,7 @@ for i = 1:m
     end
 end
 
+% Save and compute metrics
 Iavg = uint8(I);
 imwrite(Iavg, 'Lena_average.jpg');
 
