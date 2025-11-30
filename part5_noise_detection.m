@@ -9,7 +9,7 @@ A = imread('Lena_noise.jpg');
 %Size of image
 [m,n] = size(A);
 %Threshold that defines a significant value
-threshold = 15;
+threshold = 20;
 
 % ------ NOISE DETECTION ALG --------------------
 coords = [];  % list of noisy pixel coordinates
@@ -26,7 +26,7 @@ for i = 1:m
                 nj = j + v;
 
                 % Include only valid pixels
-                if ni >= 1 && ni <= m && nj >= 1 && nj <= n
+                if ni >= 1 && ni <= m && nj >= 1 && nj <= n && ~(u == 0 && v == 0)
                     B = [B, A(ni,nj)];
                 end
             end
@@ -39,7 +39,7 @@ for i = 1:m
 
         %If the pixel is significantly different than neighbors, add to
         %coordinates
-        if abs(A(i,j) - p_median) > threshold
+        if abs(double(A(i,j)) - double(p_median)) > threshold
             coords = [coords; i,j];
         end
     end
@@ -47,10 +47,10 @@ end
 
 %----- NOISE VISUALIZATION --------
         
-%disp(coords); (used for testing)
-figure;
-imshow(A) %shows all the noise of the image.
+% function will return coordinates
+save("part5_noise_detection.mat")
 
-noiseReduc = coords; % function will return coordinates
-
+%---------RETURN-----------------
+%Returns the coordinates for part 6
+noiseReduc = coords;
 end

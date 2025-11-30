@@ -6,17 +6,13 @@
 
 function Imed_noise = Median_Filter_DetectedNoise()
 
+load("part5_noise_detection.mat", "coords");
 % Read noisy image
 A = double(imread('Lena_noise.jpg'));
 [m,n] = size(A);
 threshold = 15;
 
 % Detect noise using algorithm (SAME AS PART 5)
-coords = [];  % list of noisy pixel coordinates
-
-% Use noise detection algorithm
-coords = Noise_Detection();
-
 
 % Apply median filter only on detected noise pixels
 I = A;   % initialize output image as original
