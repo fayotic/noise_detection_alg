@@ -38,6 +38,8 @@ end
 Iavg = uint8(I);
 imwrite(Iavg, 'Lena_average.jpg');
 
+%imshow('Lena_average.jpg');
+
 % Compute metrics
 orig = imread('Lena.jpg');
 [MSE2, SNR2, PSNR2] = compute_metrics(double(orig), double(Iavg));

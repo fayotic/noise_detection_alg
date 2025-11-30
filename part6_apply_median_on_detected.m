@@ -10,9 +10,6 @@ load("part5_noise_detection.mat", "coords");
 % Read noisy image
 A = double(imread('Lena_noise.jpg'));
 [m,n] = size(A);
-threshold = 15;
-
-% Detect noise using algorithm (SAME AS PART 5)
 
 % Apply median filter only on detected noise pixels
 I = A;   % initialize output image as original

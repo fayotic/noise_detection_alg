@@ -9,7 +9,7 @@ A = imread('Lena_noise.jpg');
 %Size of image
 [m,n] = size(A);
 %Threshold that defines a significant value
-threshold = 20;
+threshold = 30;
 
 % ------ NOISE DETECTION ALG --------------------
 coords = [];  % list of noisy pixel coordinates
@@ -46,9 +46,27 @@ for i = 1:m
 end
 
 %----- NOISE VISUALIZATION --------
-        
+figure;
+redBackground = ones(m,n,3) * 255; 
+redBackground(:,:,2) = 0;  % Green channel = 0
+redBackground(:,:,3) = 0;  % Blue channel = 0
+redBackground = uint8(redBackground);
+
+  % Place original pixel values at noise coordinates
+for k = 1:size(coords,1)
+    i = coords(k,1);
+    j = coords(k,2);
+    val = A(i,j);
+    % Set all RGB channels to original grayscale value
+    redBackground(i,j,1) = val;
+    redBackground(i,j,2) = val;
+    redBackground(i,j,3) = val;
+end
+    
+% Display red background
+imshow(redBackground);
 % function will return coordinates
-save("part5_noise_detection.mat")
+save("part5_noise_detection.mat");
 
 %---------RETURN-----------------
 %Returns the coordinates for part 6

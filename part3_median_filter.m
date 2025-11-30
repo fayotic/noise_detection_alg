@@ -39,6 +39,7 @@ end
 Imed = uint8(I);
 imwrite(Imed, 'Lena_median.jpg');
 
+
 % Compute metrics
 orig = imread('Lena.jpg');
 [MSE3, SNR3, PSNR3] = compute_metrics(double(orig), double(Imed));
@@ -47,5 +48,6 @@ orig = imread('Lena.jpg');
 fprintf("MSE3  = %.4f\n", MSE3);
 fprintf("SNR3  = %.4f\n", SNR3);
 fprintf("PSNR3 = %.4f\n", PSNR3);
+%imshow('Lena_median.jpg');
 
 end
