@@ -13,21 +13,9 @@ threshold = 15;
 
 % Detect noise using algorithm (SAME AS PART 5)
 coords = [];  % list of noisy pixel coordinates
-for i = 2:m - 1
-    for j = 2:n -1 
-        %3 by 3 neighbors
-        p_neighbors = [A(i-1,j-1), A(i-1,j), A(i-1,j+1), ...
-                       A(i,j-1),             A(i,j+1), ...
-                       A(i+1,j-1), A(i+1,j), A(i+1,j+1)];
-        %Get the median of the neighbors for comparison
-        p_median = median(p_neighbors);
-        %If the pixel is significantly different than neighbors, add to
-        %noise
-        if abs(A(i,j) - p_median) > threshold
-            coords = [coords; i,j];
-        end
-    end
-end
+
+% Use noise detection algorithm
+coords = Noise_Detection();
 
 
 % Apply median filter only on detected noise pixels

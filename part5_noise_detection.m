@@ -15,15 +15,27 @@ threshold = 15;
 coords = [];  % list of noisy pixel coordinates
 
 %Nested for-loop that detects pixels for noise.
-for i = 2:m -1
-    for j = 2:n - 1
+for i = 1:m
+    for j = 1:n
+        B = [];  % dynamic array to store neighbors
 
-        %3 by 3 neighbors
-        p_neighbors = [A(i-1,j-1), A(i-1,j), A(i-1,j+1), ...
-                       A(i,j-1),             A(i,j+1), ...
-                       A(i+1,j-1), A(i+1,j), A(i+1,j+1)];
-        %Get the median of the neighbors for comparison
-        p_median = median(p_neighbors);
+        % Loop over 3x3 neighborhood
+        for u = -1:1
+            for v = -1:1
+                ni = i + u;
+                nj = j + v;
+
+                % Include only valid pixels
+                if ni >= 1 && ni <= m && nj >= 1 && nj <= n
+                    B = [B, A(ni,nj)];
+                end
+            end
+        end
+
+        % Sort and pick the median
+        B = sort(B);
+        mid = ceil(length(B)/2);
+        p_median = B(mid);
 
         %If the pixel is significantly different than neighbors, add to
         %coordinates
@@ -34,10 +46,11 @@ for i = 2:m -1
 end
 
 %----- NOISE VISUALIZATION --------
-
-
-
         
 %disp(coords); (used for testing)
 figure;
 imshow(A) %shows all the noise of the image.
+
+noiseReduc = coords; % function will return coordinates
+
+end
