@@ -1,5 +1,5 @@
 % Implements a noise detection algorithm on Lena_noise.jpg
-% Detects black (0) and white (255) pixels as salt-and-pepper noise
+% Detects noisy pixels using a thresholded difference from the local median
 % Handles all pixels and records coordinates of detected noise
 % Produces a visualization image highlighting noise pixels
 

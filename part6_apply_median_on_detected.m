@@ -1,5 +1,5 @@
 % Implements a manual 3x3 median filter on Lena_noise.jpg
-% Detects noisy pixels (exact black or white) and applies the median filter only on those pixels
+% Applies a median filter ONLY on pixels detected as noise in Part 5
 % Handles all pixels including edges/corners by using only existing neighbors
 % Writes Lena_medianfilter_detectednoise.jpg
 % Computes and displays MSE, SNR, and PSNR for the filtered image
