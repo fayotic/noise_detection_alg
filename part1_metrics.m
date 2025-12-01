@@ -11,6 +11,7 @@ B = imread('Lena_noise.jpg');     % noisy
 A = double(A);
 B = double(B);
 
+%Size of image
 [m,n] = size(A);
 
 % Compute Metrics

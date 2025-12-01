@@ -38,6 +38,7 @@ end
 Iavg = uint8(I);
 imwrite(Iavg, 'Lena_average.jpg');
 
+%Shows Lena_average.jpg in a figure
 figure;
 imshow('Lena_average.jpg');
 
