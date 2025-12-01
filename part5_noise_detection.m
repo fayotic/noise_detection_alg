@@ -26,7 +26,7 @@ for i = 1:m
                 nj = j + v;
 
                 % Include only valid pixels
-                if ni >= 1 && ni <= m && nj >= 1 && nj <= n && ~(u == 0 && v == 0)
+                if ni >= 1 && ni <= m && nj >= 1 && nj <= n 
                     B = [B, A(ni,nj)];
                 end
             end
