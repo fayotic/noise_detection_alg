@@ -12,10 +12,10 @@ load('part6_apply_median_on_detected.mat');
 MSEdiff = MSE1 - MSE4;
 MSEpercent = MSEdiff/MSE1 * 100;
 
-SNRdiff = SNR1 - SNR4;
+SNRdiff = SNR4 - SNR1;
 SNRpercent = SNRdiff / SNR1 * 100;
 
-PSNRdiff = PSNR1 - PSNR4;
+PSNRdiff = PSNR4 - PSNR1;
 PSNRpercent = PSNRdiff / PSNR1 * 100;
 
 %Displays data
