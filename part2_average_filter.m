@@ -38,7 +38,8 @@ end
 Iavg = uint8(I);
 imwrite(Iavg, 'Lena_average.jpg');
 
-%imshow('Lena_average.jpg');
+figure;
+imshow('Lena_average.jpg');
 
 % Compute metrics
 orig = imread('Lena.jpg');

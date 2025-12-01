@@ -48,6 +48,9 @@ orig = imread('Lena.jpg');
 fprintf("MSE3  = %.4f\n", MSE3);
 fprintf("SNR3  = %.4f\n", SNR3);
 fprintf("PSNR3 = %.4f\n", PSNR3);
-%imshow('Lena_median.jpg');
+
+% Display median filter photo
+figure;
+imshow('Lena_median.jpg');
 
 end
